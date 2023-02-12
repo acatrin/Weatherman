@@ -1,18 +1,17 @@
 # Import Meteostat library and dependencies
-from datetime import datetime
-import matplotlib.pyplot as plt
-from meteostat import Point, Hourly
+import datetime
+from meteostat import Point, Daily
 
 # Set time period
-start = datetime(2023, 2, 13, 16, 12)
-end = datetime(2023, 2, 13, 17, 30)
+start = datetime.datetime.now() + datetime.timedelta(days=1)
+end = datetime.datetime.now() + datetime.timedelta(days=2)
 
 # Create Point for London, UK
 location = Point(51.5072, 0.1276)
 
-# Get daily data for 2018
-data = Hourly(location, start, end)
+# Get daily data for tomorrow
+data = Daily(location, start, end)
 data = data.fetch()
 
-# Plot line chart including average, minimum and maximum temperature
+# Display results to terminal
 print(data)
